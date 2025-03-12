@@ -1,17 +1,30 @@
 import React from 'react';
-import { IconButton } from '@mui/material';
-import { Brightness4, Brightness7 } from '@mui/icons-material';
+import { Button, Box } from '@mui/material';
+import { styled } from '@mui/material/styles';
+
+const StyledButton = styled(Button)(({ theme }) => ({
+  borderRadius: '24px',
+  padding: '8px 24px',
+  transition: 'all 0.3s ease',
+  background: theme.palette.mode === 'light' ? '#f0f0f0' : '#333',
+}));
 
 interface ThemeToggleButtonProps {
-  theme: 'light' | 'dark';
-  toggleTheme: () => void;
+  mode: 'aam' | 'mentios';
+  toggleMode: () => void;
 }
 
-const ThemeToggleButton: React.FC<ThemeToggleButtonProps> = ({ theme, toggleTheme }) => {
+const ThemeToggleButton: React.FC<ThemeToggleButtonProps> = ({ mode, toggleMode }) => {
   return (
-    <IconButton onClick={toggleTheme} color="inherit">
-      {theme === 'dark' ? <Brightness7 /> : <Brightness4 />}
-    </IconButton>
+    <Box sx={{ position: 'fixed', top: '20px', right: '20px', zIndex: 1100 }}>
+      <StyledButton
+        onClick={toggleMode}
+        variant="contained"
+        color="primary"
+      >
+        Zindagi: {mode === 'aam' ? 'Mentios' : 'Aam'}
+      </StyledButton>
+    </Box>
   );
 };
 
